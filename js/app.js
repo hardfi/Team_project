@@ -11,6 +11,28 @@ document.addEventListener("DOMContentLoaded", function () {
       this.title = document.querySelector('[name="title"]').value;
       this.date = document.querySelector('[name="date"]').value;
       this.priority = document.querySelector('[name="priority"]').value;
+
+      // function sorting objects in array by given key (here 'id')
+      this.compare = function(a,b) {
+        if (b.id < a.id)
+        return -1;
+        if (b.id > a.id)
+        return 1;
+        return 0;
+      }
+
+      objArray.sort(this.compare);
+
+      // function calculating id for every new object
+      this.calcId = function(array) {
+        if (array.length === 0) {
+          return 1;
+        } else {
+          return array[0].id + 1; // array was sorted from biggest to smallest ID
+        }
+      }
+
+      this.id = this.calcId(objArray);
     }
 
     // with every single 'click' create new object with the above values
